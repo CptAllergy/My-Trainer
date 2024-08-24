@@ -64,10 +64,12 @@ class MainMenuNavigationBlock extends StatelessWidget {
                   width: 120,
                   child: InkWell(
                       onTap: () {},
-                      child: Icon(pageIcon, size: 60, color: theme.colorScheme.onPrimary)
-                  ),
+                      customBorder: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Icon(pageIcon,
+                          size: 60, color: theme.colorScheme.onPrimary)),
                 ),
-
               ],
             ),
           ),
