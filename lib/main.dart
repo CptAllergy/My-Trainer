@@ -3,6 +3,7 @@ import 'package:my_trainer/src/pages/home_page.dart';
 import 'package:my_trainer/src/states/global_state.dart';
 import 'package:provider/provider.dart';
 
+
 void main() {
   runApp(MyTrainerApp());
 }

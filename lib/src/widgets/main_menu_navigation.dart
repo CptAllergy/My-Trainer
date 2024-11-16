@@ -63,7 +63,8 @@ class MainMenuNavigationBlock extends StatelessWidget {
                   height: 120,
                   width: 120,
                   child: InkWell(
-                      onTap: () {},
+                      /* FIXME: This messes up navigation. Navigation could be added here to fix it with onTap(){}
+                      onTap: () {},*/
                       customBorder: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
