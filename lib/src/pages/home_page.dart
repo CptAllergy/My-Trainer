@@ -12,13 +12,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var selectedIndex = 0; // Set to start on the Workout page by default
+  var selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     Widget page;
 
-    // Updated switch with break statements
     switch (selectedIndex) {
       case 0:
         page = GeneratorPage();
@@ -27,6 +26,13 @@ class _HomePageState extends State<HomePage> {
       default:
         throw UnimplementedError('No widget for $selectedIndex');
     }
+
+    List<Widget> menuList1 = [];
+    menuList1.add(MainMenuNavigationBlock(page: MenuPage.progress));
+    menuList1.add(MainMenuNavigationBlock(page: MenuPage.training));
+    menuList1.add(MainMenuNavigationBlock(page: MenuPage.nutrition));
+    menuList1.add(MainMenuNavigationBlock(page: MenuPage.challenges));
+    menuList1.add(MainMenuNavigationBlock(page: MenuPage.calender));
 
     //FIXME: The navigation only works when pressing the text fields not the icon
 
