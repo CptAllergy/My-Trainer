@@ -1,0 +1,12 @@
+{
+  "home": {
+    "welcome": "Welcome back!",
+    "nav": {
+      "progress": "Progress",
+      "training": "Training",
+      "nutrition": "Nutrition",
+      "challenges": "Challenges",
+      "calender": "Calender"
+    }
+  }
+}

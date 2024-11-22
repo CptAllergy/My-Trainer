@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:my_trainer/src/utils/localization_service.dart';
 import 'package:provider/provider.dart';
 
+import '../pages/calender_page.dart';
+import '../pages/challenges_page.dart';
+import '../pages/nutrition_page.dart';
+import '../pages/progress_page.dart';
+import '../pages/training_page.dart';
 import '../states/global_state.dart';
 import '../utils/enums.dart';
 
@@ -15,21 +21,9 @@ class MainMenuNavigationBlock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var globalState = context.watch<GlobalState>();
-    var translations = globalState.translations;
+    var translations = LocalizationService.of(context);
 
-    String pageText;
-    switch (page) {
-      case MenuPage.progress:
-        pageText = translations.getMenuPageProgress();
-      case MenuPage.training:
-        pageText = translations.getMenuPageTraining();
-      case MenuPage.nutrition:
-        pageText = translations.getMenuPageNutrition();
-      case MenuPage.challenges:
-        pageText = translations.getMenuPageChallenges();
-      case MenuPage.calender:
-        pageText = translations.getMenuPageCalender();
-    }
+    String pageText = translations.translate("home.nav.${page.name}");
 
     IconData pageIcon;
     switch (page) {
@@ -45,9 +39,24 @@ class MainMenuNavigationBlock extends StatelessWidget {
         pageIcon = Icons.calendar_month_outlined;
     }
 
+    Widget pageWidget;
+    switch (page) {
+      case MenuPage.progress:
+        pageWidget = ProgressPage();
+      case MenuPage.training:
+        pageWidget = TrainingPage();
+      case MenuPage.nutrition:
+        pageWidget = NutritionPage();
+      case MenuPage.challenges:
+        pageWidget = ChallengesPage();
+      case MenuPage.calender:
+        pageWidget = CalenderPage();
+    }
+
     var theme = Theme.of(context);
     final textStyle = theme.textTheme.titleLarge!.copyWith(
       color: theme.colorScheme.onPrimary,
+
     );
 
     return Padding(
@@ -63,13 +72,20 @@ class MainMenuNavigationBlock extends StatelessWidget {
                   height: 120,
                   width: 120,
                   child: InkWell(
-                      /* FIXME: This messes up navigation. Navigation could be added here to fix it with onTap(){}
-                      onTap: () {},*/
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => pageWidget),
+                        );
+                      },
                       customBorder: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: Icon(pageIcon,
-                          size: 60, color: theme.colorScheme.onPrimary)),
+                      child: Icon(
+                          pageIcon,
+                          size: 60,
+                          color: theme.colorScheme.onPrimary)
+                  ),
                 ),
               ],
             ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_trainer/src/pages/home_page.dart';
 import 'package:my_trainer/src/states/global_state.dart';
+import 'package:my_trainer/src/utils/localization_service.dart';
 import 'package:provider/provider.dart';
 
 
@@ -35,6 +36,9 @@ class MyTrainerApp extends StatelessWidget {
           colorScheme: colorScheme,
         ),
         home: HomePage(),
+        localeResolutionCallback: LocalizationService.localeResolutionCallback,
+        supportedLocales: LocalizationService.supportedLocales,
+        localizationsDelegates: LocalizationService.localizationsDelegates,
       ),
     );
   }
